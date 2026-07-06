@@ -1,0 +1,19 @@
+
+services:
+    mysql-sample-app:
+        image: phpmyadmin:5
+        restart: always
+        ports:
+            - 8080:80
+        environment:
+            - PMA_HOST=mysql-sample-mysql
+            - PMA_USER=root
+            - PMA_PASSWORD=password
+    mysql-sample-mysql:
+        image: mysql:8
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            TZ: 'Asia/Tokyo'
+        volumes:
+            - ./mysql:/var/lib/mysql
